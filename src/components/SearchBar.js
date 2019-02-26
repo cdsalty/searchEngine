@@ -8,9 +8,12 @@ class SearchBar extends React.Component{
     
 
     //    **** GET USED TO WRITTING: preventDefault() ****
-    onFormSubmit(event){
-        event.preventDefault();     //will prevent the form from submitting itself and refreshing the page
-    }
+    // onFormSubmit(event){
+    onFormSubmit = event => {   // by doing this, our 'this' will now always be the equal to our searchBar's instance (the user input)
+        event.preventDefault();   //will prevent the form from submitting itself and refreshing the page
+        
+        console.log(this.state.term);   // will console.log what is inputted into the form and capture it.
+    };
     // onInputChange(event){
         //console.log(event.target.value);    //TO KNOW when locating input value.
     //}
