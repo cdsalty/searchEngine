@@ -1,51 +1,33 @@
 import React from 'react';
 
-//  *******     We will need a class based component BECAUSE:       *******
-        // WE HAVE TO USE 'STATE' at some point to handle what the user's input into the searchbar.
-
 class SearchBar extends React.Component{
-    state = { term: '' };
-    
+    state = { term : "" };  // if I wanted to put text in there, it would be the new VALUE on line 24
 
-    //    **** GET USED TO WRITTING: preventDefault() ****
-    // onFormSubmit(event){
-    onFormSubmit = event => {   // by doing this, our 'this' will now always be the equal to our searchBar's instance (the user input)
-        event.preventDefault();   //will prevent the form from submitting itself and refreshing the page
-        
-        console.log(this.state.term);   // will console.log what is inputted into the form and capture it.
-    };
-    // onInputChange(event){
-        //console.log(event.target.value);    //TO KNOW when locating input value.
-    //}
-    // onInputClick(){
-    //     console.log("Looks like our input was just clicked. See me in the conosle????")
-    // }
+	onFormSubmit = (event) => {
+		event.preventDefault(); 
+			// console.log(this.state.term);
+		this.props.onSubmit(this.state.term);
+			// we look at our props object and we call the function that was passed into it as the onSubmit PROP
+	};
+	// vs. original method which was onFormSubmit(event) which would not correctly call on this.onFormSubmit
 
 
-
-        // **NOTE** our value, 'this.state.term' is determined based on the target value and we force it into the input as value being displayed.
-    render(){
-        console.log(this.state.term);   // will show each input typed into our form in the console.
-        return (
-            <div className = "ui segment">
-                <form onSubmit = { this.onFormSubmit } className="ui form">
-                    <div className="field">
-                        <label>Image Search</label>
-                        <input 
-                        type="text" 
-                        value={this.state.term} 
-                        onChange = {(e) => this.setState({ term: e.target.value })} />
-                        {/* onChange={(e) => this.setState({ term: e.target.value.toUpperCase() })} /> */}
-                        {/* <input type="text" onChange={this.onInputChange} /> */}
-                        {/* <input type = "text" onChange = { (e) => console.log(e.target.value)} /> */}
-                    </div>
-                
-                </form>
-            </div>
-        );
-    }
-}
+	render(){     
+		return (
+			<div className = "ui segment">
+				<form onSubmit = { this.onFormSubmit } className="ui form">
+					<div className="field">
+						<label>Image Search</label>
+						<input 
+								type="text" 
+								value={this.state.term} // This value is come directly from "onChange" below
+								onChange = {(e) => this.setState({ term: e.target.value })} />  
+					</div>  
+				</form>
+			</div>
+		);
+	}
+};
 
 export default SearchBar;
-
-// now we want to show this search bar in our App.js component. (Import SearchBar into App.js)
+                
