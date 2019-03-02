@@ -1,5 +1,6 @@
 import React from 'react';
-import SearchBar from './SearchBar';
+import axios from 'axios';
+import SearchBar from './SearchBar';	// axios placed above because this is a user made component
 
 
 // STEP ONE
@@ -9,7 +10,15 @@ import SearchBar from './SearchBar';
 class App extends React.Component {
 // Creating a callback method on the App and then refer to it in your Seachbar JSX near bottomn
 	onSearchSubmit(term) {
-		console.log(term);
+		// console.log(term);
+		axios.get('https://api.unsplash.com/search/photos', {
+			// params: specifies the different query string parameters we want to add to this request
+			// see https://unsplash.com/documentation#search-photos for full list of all params available
+			params: { query : term },	// calling query from documentation above and passing (terms)  
+			headers: {
+				Authorization: 'Client-ID 05e23c603b63c6549e8bb4d1f64dad26360985c386f9a77b390f040a7ffbe3ac'
+			}
+		});
 	}
 		
 
