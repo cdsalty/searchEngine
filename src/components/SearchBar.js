@@ -1,9 +1,9 @@
 import React from 'react';
 
-class SearchBar extends React.Component{
-    state = { term : "" };  // if I wanted to put text in there, it would be the new VALUE on line 24
+class SearchBar extends React.Component {
+    state = { term : '' };  // if I wanted to put text in there, it would be the new VALUE on line 24
 
-	onFormSubmit = (event) => {
+	onFormSubmit = (event) => {  
 		event.preventDefault(); 
 			// console.log(this.state.term);
 		this.props.onSubmit(this.state.term);
